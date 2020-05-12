@@ -1,8 +1,8 @@
 # iptables_block
 
-Service program to check recurrently the journalctl attempting connections to our server and blocking ip with ipset and iptables in linux.
+Service program to check recurrently the journalctl and the attempting connections to our server and block ip with ipset and iptables in linux.
 
-## Neccesary libraries and programs
+## Necessary libraries and programs
 - Python 3
 - Libraries: os, time
 - iptables
@@ -15,7 +15,7 @@ Service program to check recurrently the journalctl attempting connections to ou
 * Install iptables and ipset
 ```
   yum install ipset iptables iptables-persistent screen
-or
+  or
   apt-get install ipset iptables iptables-persistent screen
 ```
 * Create a blacklist
@@ -31,7 +31,7 @@ or
 
 To save and restore iptables rules, use the package iptables-persistent. As the name implies, this makes the iptables rules persistent across reboots.
 
-* Create file (/etc/systemd/system/save-ipset-rules.service)
+Create file (/etc/systemd/system/save-ipset-rules.service)
 ```
   [Unit]
   Description=ipset persistent rule service
@@ -58,8 +58,8 @@ And create iptables save file the first time with:
   import sys
 ```
 
-* Screen
-If you want runs the service
+* Whitelist ips<br>
+Remember to create a whitelist.txt file with authorized ip's in each line in case that you fail to login at any time, not block your own ip.
 
 ## Running program
 
@@ -68,5 +68,4 @@ To run the service in background you can made an .sh whit:
 ```
   screen -S Block_ip_service -d -m python3 iptables_block.py
 ```
-
 <a href="https://www.buymeacoffee.com/BTRpGQmXq" target="_blank"><img src="https://i1.wp.com/www.buymeacoffee.com/assets/img/custom_images/orange_img.png?w=2560&ssl=1" alt="Buy Me A Coffee" style="height: 5px !important;width: 74px !important;" ></a>
